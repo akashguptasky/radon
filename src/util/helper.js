@@ -7,17 +7,24 @@
 	
 // 	Call all these functions in route.js inside the test-me route handler
 
-
-
-
 let currentDate=new Date();
-let cDay = currentDate.getDate();
-let cMonth = currentDate.getMonth() + 1;
+
+const printDate=function()
+{
+    let cDay = currentDate.getDate();
+    console.log("The current date is : "+cDay);
+}
+
+const printMonth=function()
+{
+    let cMonth = currentDate.getMonth() + 1;
+    console.log("The current month is : "+cMonth);
+}
 
 const getBatchInfo=function(){
     console.log("'Radon,W3D3, the topic for today is Nodejs module system");
 }
 
-module.exports.cDay=cDay;
-module.exports.cMonth=cMonth;
+module.exports.cDay=printDate;
+module.exports.cMonth=printMonth;
 module.exports.getBatchInfo=getBatchInfo;

@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/test-me', function (req, res) {
     externalModule.welcome()
-    console.log("The Current Date is :  "+helper.cDay);
-    console.log("The Current Month is : "+helper.cMonth);
+    helper.cDay();
+    helper.cMonth();
     helper.getBatchInfo();
     formatter.trim();
     formatter.changeToLowerFunction();
