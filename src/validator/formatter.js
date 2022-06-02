@@ -22,7 +22,7 @@ const changeToLowerFunction=function()
 
 const changeToUpperFunction=function()
 {
-    let text="THIS IS FUNCTIONUP ASSIGNMENT";
+    let text="This is functionup assignment";
     console.log(  text=text.toUpperCase());   
 }
 module.exports.trim=trim;
