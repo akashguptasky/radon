@@ -4,37 +4,85 @@ const underscore = require('underscore')
 
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    myHelper.printDate()
-    myHelper.getCurrentMonth()
-    myHelper.getCohortData()
-    let firstElement = underscore.first(['Sabiha','Akash','Pritesh'])
-    console.log('The first element received from underscope function is '+firstElement)
-    res.send('My first ever api!')
+
+
+// first movies api 
+router.get('/movies', function (req, res) {
+   let moviesArr=['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins'];
+   //seperate
+    res.send(moviesArr.join(","));
+    console.log(...moviesArr)
 });
 
-router.get('/hello', function (req, res) {
-   
-    res.send('Hello there!')
+// second find movies by using index 
+router.get('/movies/:indexNumber',function(req,res){
+let moviesArr=['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins'];
+let index=req.params.indexNumber;
+if(index<=moviesArr.length-1)
+{
+    res.send( moviesArr[index]);
+}
+// handle problem 
+else
+{
+    res.send("sorry Availalbe movies index only 0 to 3. so plz select only valid number");
+}
+
 });
 
-router.get('/candidates', function(req, res){
-    console.log('Query paramters for this request are '+JSON.stringify(req.query))
-    let gender = req.query.gender
-    let state = req.query.state
-    let district = req.query.district
-    console.log('State is '+state)
-    console.log('Gender is '+gender)
-    console.log('District is '+district)
-    let candidates = ['Akash','Suman']
-    res.send(candidates)
-})
+// create films api here 
+router.get('/films',function(req,res){
+  const myObjFilmArr=  [ {
+        'id': 1,
+        'name': 'The Shining'
+       }, {
+        'id': 2,
+        'name': 'Incendies'
+       }, {
+        'id': 3,
+        'name': 'Rang de Basanti'
+       }, {
+        'id': 4,
+        'name': 'Finding Nemo'
+       }]
 
-router.get('/candidates/:canidatesName', function(req, res){
-    console.log('The request objects is '+ JSON.stringify(req.params))
-    console.log('Candidates name is '+req.params.canidatesName)
-    res.send('Done')
-})
+       res.send(myObjFilmArr);
+});
+
+
+
+router.get('/films/:filmId',function(req,res){
+    const myObjFilmArr=  [ {
+        'id': 1,
+        'name': 'The Shining'
+       }, {
+        'id': 2,
+        'name': 'Incendies'
+       }, {
+        'id': 3,
+        'name': 'Rang de Basanti'
+       }, {
+        'id': 4,
+        'name': 'Finding Nemo'
+       }]
+       let index=req.params.filmId;
+       if(index>myObjFilmArr.length)
+       {
+        res.send("No movie exists with this id")
+       }
+       else
+       { 
+      for(let i=0;i<myObjFilmArr.length;i++)
+      {
+          if(myObjFilmArr[i].id==index)
+          {
+           res.send("Film Name is: "+myObjFilmArr[i].name +"  and Objec is : "+JSON.stringify(myObjFilmArr[i]));
+            
+          }
+      }
+    }
+
+});
 
 
 module.exports = router;
