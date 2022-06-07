@@ -22,21 +22,36 @@ const bookList = async function(req,res)
 const getBooksInYear = async function(req,res)
 {
    let year= req.body.year;
-    let yearbooks;
     let mydata = await BookModel.find({year:[year]})
   
   res.send({msg: mydata})  
 
 }
 
+
+
+
+
 // Fourth API Here
     const getParticularBooks = async function(req,res){
         let requestData = req.body
         let dispayingData = await BookModel.find(requestData)
-        res.send({msg : dispayingData})
+        if(dispayingData.length==0)
+        {
+            res.send("sorry items not available")
+        }
+        else
+        {
+            res.send({msg : dispayingData})
+        }
+       
        }
     
 
+
+
+
+       
 //request to return all books who have an Indian price tag of “100INR” or “200INR” or “500INR”
 //Five API Code
 const getXINRBooks= async function(req,res)
@@ -51,7 +66,7 @@ const getXINRBooks= async function(req,res)
 //sixth API code here 
 const getRandomBooks = async function(req,res)
 {
-    let randomBooks = await BookModel.find({stock:true, 'totalPages':500})
+    let randomBooks = await BookModel.find({$or:[{stock:true},{'totalPages':{$gt:500}}]})
     res.send({mes:randomBooks});
 }
 
