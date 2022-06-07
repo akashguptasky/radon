@@ -7,7 +7,6 @@ const BookModel= require("../models/bookModel")
 //First API Code here
 const createBook= async function (req, res) {
     let data= req.body
-
     let savedData= await BookModel.create(data)
     res.send({msg: savedData})
 }
@@ -30,41 +29,13 @@ const getBooksInYear = async function(req,res)
 
 }
 
-//Fourth API Code here // incomplete
-
-const getParticularBooks = async function(req,res)
-{
-    // let my=req.body
-    // let k=Object.keys(my);
-    // let kq=Object.values(my)
-    // console.log(k);
-    // console.log(k.length)
-    // console.log(kq)
-
-    let getData = req.body;
-    let k=Object.keys(getData);
-   
-    let value1=Object.values(getData)
-
-
-   
-    // console.log(k)
-    // console.log(getData)
-    let data= await BookModel.find(k);
-
-    res.send(data);
+// Fourth API Here
+    const getParticularBooks = async function(req,res){
+        let requestData = req.body
+        let dispayingData = await BookModel.find(requestData)
+        res.send({msg : dispayingData})
+       }
     
-    
-
-}
-
-
-
-
-
-
-
-
 
 //request to return all books who have an Indian price tag of “100INR” or “200INR” or “500INR”
 //Five API Code
@@ -72,9 +43,6 @@ const getXINRBooks= async function(req,res)
 {
  
     let inrbooks= await BookModel.find({$or:[{price:{indianPirce:'100INR'}},{price:{indianPrice:"200INR"}},{price:{indianPrice:'500INR'}}]})
- 
-    console.log("hello")
-    console.log(inrbooks)
     res.send({msg:inrbooks})
 }
 
