@@ -76,7 +76,7 @@ const oldAuthorBooks = async function(req,res)
 {
     let oldAuthorId = await authorModel.find({age:50}).select({author_id:1,author_name:1,age:1,_id:0}) //here i getting  all author_id whoes age is grether than 
     console.log(oldAuthorId.author_id);
-    let allBooksHighRating = await bookModel.find({rating:{$gt:4}},{author_id:oldAuthorId.author_id}).select({author_id:1, oldAuthorId:{author_name:1 }, _id:0, price:0,rating:0})
+    let allBooksHighRating = await bookModel.find({rating:{$gt:4}}).select({author_id:1, _id:0, price:0,rating:0})
     let myObj=[];
     for(let i=0;i<oldAuthorId.length;i++) // author_id whoes age is :50
     {
