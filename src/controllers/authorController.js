@@ -6,8 +6,6 @@ const createAuthor = async function(req,res)
 {
    const data= req.body
    let newData= await authorModel.create(data);
-   res.send({msg:newData})
-
-   
+   res.send({msg:newData})  
 }
 module.exports.createAuthor = createAuthor;

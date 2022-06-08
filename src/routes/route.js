@@ -15,5 +15,10 @@ router.get('/getUpdatedData',BookController.getUpdatedData)
 router.get('/getByCostBooks',BookController.getByCostBooks)
 
 
+// =============new API
+
+router.get('/authoridBooks/:id',BookController.authoridBooks)
+router.get('/oldAuthorBooks',BookController.oldAuthorBooks)
+
 
 module.exports = router;
