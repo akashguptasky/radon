@@ -56,6 +56,8 @@ const getByCostBooks = async function(req,res)
 
 }
 
+
+
 // *************** NEw Problem Solution  ===> problem 1 
 
 // Write an api GET /books-by-authorid/<Author_Id> (for example /books/1 or /books/2 etc) that returns all the books written by the author with an id <Author_Id>. Only return the names of these books
@@ -73,8 +75,24 @@ const authoridBooks = async function(req,res)
 const oldAuthorBooks = async function(req,res)
 {
     let oldAuthorId = await authorModel.find({age:50}).select({author_id:1,author_name:1,age:1,_id:0}) //here i getting  all author_id whoes age is grether than 
-    let allBooksHighRating = await bookModel.find({rating:{$gt:4}},{author_id:oldAuthorId.author_id}).select({author_id:1,_id:0})
-    res.send({msg:allBooksHighRating})
+    console.log(oldAuthorId.author_id);
+    let allBooksHighRating = await bookModel.find({rating:{$gt:4}},{author_id:oldAuthorId.author_id}).select({author_id:1, oldAuthorId:{author_name:1 }, _id:0, price:0,rating:0})
+    let myObj=[];
+    for(let i=0;i<oldAuthorId.length;i++) // author_id whoes age is :50
+    {
+        for(let j=0;j<allBooksHighRating.length;j++)
+        {
+            if(allBooksHighRating[j].author_id===oldAuthorId[i].author_id)
+            {
+                let author_name=oldAuthorId[i].author_name;
+                let author_id=oldAuthorId[i].age;
+                myObj.push({author_name,author_id})
+            }
+        }
+    }
+
+    res.send(myObj)
+
 }
 
 
