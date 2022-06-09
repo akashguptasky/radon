@@ -72,29 +72,53 @@ const authoridBooks = async function(req,res)
 //  ===> problem 2
 // Find a list of authors whose are older than 50 years of age with at least one book that has a rating greater than 4. Only include the author’s names and their ages in the response for this api
  
+// const oldAuthorBooks = async function(req,res)
+// {
+//     let oldAuthorId = await authorModel.find({age:50}).select({author_id:1, author_name:1, age:1, _id:0}) //here i getting  all author_id whoes age is grether than 
+//     console.log(oldAuthorId)
+//     let allBooksHighRating = await bookModel.find({rating:{$gt:4}}).select({author_id:1, _id:0, price:0, rating:0})
+//     let myObj=[];
+//     for(let i=0;i<oldAuthorId.length;i++) // author_id whoes age is :50
+//     {
+//         for(let j=0;j<allBooksHighRating.length;j++)
+//         {
+//             if(allBooksHighRating[j].author_id===oldAuthorId[i].author_id)
+//             {
+//                 let author_name=oldAuthorId[i].author_name;
+//                 let author_id=oldAuthorId[i].age;
+//                 myObj.push({author_name,author_id})
+//             }
+//         }
+//     }
+
+//     res.send(myObj)
+
+// }
+
 const oldAuthorBooks = async function(req,res)
 {
-    let oldAuthorId = await authorModel.find({age:50}).select({author_id:1,author_name:1,age:1,_id:0}) //here i getting  all author_id whoes age is grether than 
-    console.log(oldAuthorId.author_id);
-    let allBooksHighRating = await bookModel.find({rating:{$gt:4}}).select({author_id:1, _id:0, price:0,rating:0})
-    let myObj=[];
-    for(let i=0;i<oldAuthorId.length;i++) // author_id whoes age is :50
-    {
-        for(let j=0;j<allBooksHighRating.length;j++)
-        {
-            if(allBooksHighRating[j].author_id===oldAuthorId[i].author_id)
-            {
-                let author_name=oldAuthorId[i].author_name;
-                let author_id=oldAuthorId[i].age;
-                myObj.push({author_name,author_id})
-            }
-        }
-    }
+    // let oldAuthorId = await authorModel.find({age:50}).select({author_id:1,author_name:1,age:1,_id:0}) //here i getting  all author_id whoes age is grether than 
+    // let allBooksHighRating = await bookModel.find({rating:{$gt:4}},{author_id:oldAuthorId.author_id}).select({author_id:1,_id:0})
+  
 
-    res.send(myObj)
+    // let allBooksHighRating = await bookModel.find({rating:{$gt:4}},{author_id:oldAuthorId.author_id}).select({author_id:1, oldAuthorId:{author_name:1 }, _id:0, price:0,rating:0})
+    let myObj=[];
+    // for(let i=0;i<oldAuthorId.length;i++) // author_id whoes age is :50
+    // {
+    //     for(let j=0;j<allBooksHighRating.length;j++)
+    //     {
+    //         if(allBooksHighRating[j].author_id===oldAuthorId[i].author_id)
+    //         {
+    //             let author_name=oldAuthorId[i].author_name;
+    //             let author_id=oldAuthorId[i].age;
+    //             myObj.push({author_name,author_id})
+    //         }
+    //     }
+    // }
+
+    res.send("H")
 
 }
-
 
 
 
