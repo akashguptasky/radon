@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
+const { application } = require('express');
 const app = express();
 
 app.use(bodyParser.json());
@@ -13,6 +14,16 @@ mongoose.connect("mongodb+srv://myfunctionup-data:NemFawWgwh8vnMPv@cluster0.h27r
 })
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
+
+
+app.use(
+    function(req,res,next)
+    {
+        console.log(new Date().toISOString() +"  "+ req.socket.remoteAddress +"  "+ req.path )
+        next();
+    }
+    
+    )
 
 app.use('/', route);
 
