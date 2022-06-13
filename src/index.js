@@ -19,7 +19,7 @@ mongoose.connect("mongodb+srv://myfunctionup-data:NemFawWgwh8vnMPv@cluster0.h27r
 app.use(
     function(req,res,next)
     {
-        console.log(new Date().toISOString() +"  "+ req.socket.remoteAddress +"  "+ req.path )
+        console.log(new Date().toISOString() +" , "+ req.socket.remoteAddress +" , "+ req.path )
         next();
     }
     
