@@ -23,5 +23,20 @@ const auth2 = function (req, res, next) {
         next()
     }
 }
-module.exports.auth = auth;
-module.exports.auth2 = auth2;
+
+const userModified = function(req,res,next)
+{
+    let token = req.headers["x-auth-token"]
+    let decodedToken = jwt.verify(token, "functionup-radon");
+    let userToBeModified = req.params.userId;
+    let userLoggedIn= decodedToken.userId
+    if(userToBeModified!=userLoggedIn) return res.send({status:false,msg:"user logedin is not allowed to modify  the request"})
+    next()
+
+}
+
+// module.exports.auth = auth;
+// module.exports.auth2 = auth2;
+module.exports = {
+    auth,auth2,userModified
+}
