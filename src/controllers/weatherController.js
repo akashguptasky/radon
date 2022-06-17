@@ -53,7 +53,7 @@ let getSpecifiedCityData = async function (req, res) {
         }
 
         //    res.status(400).send({data:{city:city, temp:output.data.main.temp}})
-        let ans=arr1.sort((a,b)=> a.temp - b.temp)
+        let ans = arr1.sort((a, b) => a.temp - b.temp)
         res.status(200).send({ data: ans })
 
 
